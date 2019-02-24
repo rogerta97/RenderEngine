@@ -29,18 +29,21 @@ SOURCES += \
         mainwindow.cpp \
     rendersettings.cpp \
     transformwidget.cpp \
-    openglwidget.cpp
+    openglwidget.cpp \
+    entitymanagerwidget.cpp
 
 HEADERS += \
         mainwindow.h \
     rendersettings.h \
     transformwidget.h \
-    openglwidget.h
+    openglwidget.h \
+    entitymanagerwidget.h
 
 FORMS += \
         mainwindow.ui \
     rendersettings.ui \
-    transformwidget.ui
+    transformwidget.ui \
+    entitymanagerwidget.ui
 
 
 # Default rules for deployment.

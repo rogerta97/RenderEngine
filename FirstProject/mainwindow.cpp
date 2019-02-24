@@ -3,6 +3,7 @@
 #include "rendersettings.h"
 #include "transformwidget.h"
 #include "openglwidget.h"
+#include "entitymanagerwidget.h"
 
 using namespace std;
 
@@ -23,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     transformWidget = new TransformWidget();
     uiMainWindow->InspectorDock->setWidget(transformWidget);
 
+    // Add entity widget
+    entityManagerWidget = new EntityManagerWidget();
+    uiMainWindow->HierarchyDock->setWidget(entityManagerWidget);
+
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +35,7 @@ MainWindow::~MainWindow()
     delete uiMainWindow;
     delete renderSettings;
     delete transformWidget;
+    delete entityManagerWidget;
 }
 
 void MainWindow::openProject()

@@ -9,6 +9,7 @@ namespace Ui {
 
 class RenderSettings;
 class TransformWidget;
+class EntityManagerWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -28,6 +29,7 @@ private:
 
     RenderSettings* renderSettings;
     TransformWidget* transformWidget;
+    EntityManagerWidget* entityManagerWidget;
 
 };
 
