@@ -22,7 +22,7 @@ void openglwidget::paintGL()
 {
     glClearColor(0.9f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-
+    
     drawTriangle();
 }
 
@@ -41,8 +41,8 @@ void openglwidget::createTriangle()
 {
     //PROGRAM
     program.create();
-    program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader1_vert");
-    program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader1_frag");
+    program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shader1_vert");
+    program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/shader1_frag");
     program.link();
     program.bind();
 

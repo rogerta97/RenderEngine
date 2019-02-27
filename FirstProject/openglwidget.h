@@ -3,7 +3,9 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions_3_3_Core>
-
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
+#include <QOpenGLShaderProgram>
 
 class openglwidget :
         public QOpenGLWidget,
@@ -15,6 +17,12 @@ public:
     void initializeGL() override;
     void resizeGL(int width, int height) override;
     void paintGL() override;
+    void createTriangle();
+    void drawTriangle();
+
+    QOpenGLBuffer vbo;
+    QOpenGLVertexArrayObject vao;
+    QOpenGLShaderProgram program;
 
 public slots:
 
