@@ -54,3 +54,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     shader1_vert.vsh \
     shader1_frag.fsh
+
+RESOURCES += \
+    resources.qrc

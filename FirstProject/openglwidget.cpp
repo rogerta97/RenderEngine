@@ -41,8 +41,8 @@ void openglwidget::createTriangle()
 {
     //PROGRAM
     program.create();
-    program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader1_vert");
-    program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader1_frag");
+    program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/resources/shaders/shader1_vert.vsh");
+    program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/resources/shaders/shader1_frag.fsh");
     program.link();
     program.bind();
 
