@@ -1,4 +1,5 @@
 #include "openglwidget.h"
+#include <iostream>
 
 #pragma comment (lib, "OpenGL32.lib")
 
@@ -10,7 +11,21 @@ openglwidget::openglwidget(QWidget* parent) : QOpenGLWidget(parent)
 void openglwidget::initializeGL()
 {
     initializeOpenGLFunctions();
+
+    QOpenGLDebugLogger* logger = new QOpenGLDebugLogger(this);
+    logger->initialize();
+
+    connect(logger, SIGNAL(messageLogged(const QOpenGLDebugMessage& message)), this,
+            SLOT(handleLoggedMessage(const QOpenGLDebugMessage& message)));
+
+    logger->startLogging();
+
     createTriangle();
+}
+
+void openglwidget::handleLoggedMessage(const QOpenGLDebugMessage& message)
+{
+    std::cout << message.severity() << ": " << message.message().toStdString() << std::endl;
 }
 
 void openglwidget::resizeGL(int w, int h)
@@ -20,8 +35,28 @@ void openglwidget::resizeGL(int w, int h)
 
 void openglwidget::paintGL()
 {
+    glClearDepth(1.0f);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if(backface_cull)
+        glEnable(GL_CULL_FACE);
+    else
+        glDisable(GL_CULL_FACE);
+
+    if(depth_test)
+    {
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
+
+        if(write_depth)
+            glDepthMask(GL_TRUE);
+        else
+            glDepthMask(GL_FALSE);
+    }
+    else
+        glDisable(GL_DEPTH_TEST);
+
 
     drawTriangle();
 }

@@ -6,6 +6,7 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLShaderProgram>
+#include <QOpenGLDebugLogger>
 
 class openglwidget :
         public QOpenGLWidget,
@@ -24,9 +25,14 @@ public:
     QOpenGLVertexArrayObject vao;
     QOpenGLShaderProgram program;
 
+    bool backface_cull = false;
+    bool depth_test = false;
+    bool write_depth = false;
+
 public slots:
 
     void finalizeGL();
+    void handleLoggedMessage(const QOpenGLDebugMessage& message);
 };
 
 #endif // OPENGLWIDGET_H
