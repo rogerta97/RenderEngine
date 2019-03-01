@@ -20,11 +20,10 @@ void openglwidget::resizeGL(int w, int h)
 
 void openglwidget::paintGL()
 {
-    drawTriangle();
-
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    drawTriangle();
 }
 
 void openglwidget::drawTriangle()
@@ -51,9 +50,9 @@ void openglwidget::createTriangle()
 
     //VBO
     QVector3D vertices[] = {
-        QVector3D(-0.5f, -0.5f, 0.0f), QVector3D(1.0f, 0.0f, 0.0f),
-        QVector3D(0.0f, 0.0f, 1.0f),   QVector3D(0.0f, 1.0f, 0.0f),
-        QVector3D(0.5f, 0.5f, 0.0f),   QVector3D(0.0f, 0.0f, 1.0f)
+        QVector3D(-0.5f, -0.5f, 1.0f), QVector3D(1.0f, 0.0f, 0.0f),
+        QVector3D(0.0f, 0.5f, 1.0f),   QVector3D(0.0f, 1.0f, 0.0f),
+        QVector3D(0.5f, -0.5f, 1.0f),   QVector3D(0.0f, 0.0f, 1.0f)
     };
     vbo.create();
     vbo.bind();
@@ -76,4 +75,7 @@ void openglwidget::createTriangle()
     vao.release();
     vbo.release();
     program.release();
+
+
+    qDebug() << "Triangle created";
 }
