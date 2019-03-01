@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
     format.setSwapBehavior(QSurfaceFormat::SwapBehavior::DoubleBuffer);
     QSurfaceFormat::setDefaultFormat(format);
 
+    qDebug("calling");
+
     // --------------
 
     MainWindow w;

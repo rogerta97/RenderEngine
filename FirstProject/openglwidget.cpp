@@ -20,16 +20,19 @@ void openglwidget::resizeGL(int w, int h)
 
 void openglwidget::paintGL()
 {
-    glClearColor(0.9f, 0.5f, 0.5f, 1.0f);
+    drawTriangle();
+
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    drawTriangle();
 }
 
 void openglwidget::drawTriangle()
 {
+
     if(program.bind())
     {
+        qDebug() << "Valid Program";
         vao.bind();
         glDrawArrays(GL_TRIANGLES, 0, 3);
         vao.release();
