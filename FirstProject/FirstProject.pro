@@ -30,14 +30,20 @@ SOURCES += \
     rendersettings.cpp \
     transformwidget.cpp \
     openglwidget.cpp \
-    entitymanagerwidget.cpp
+    entitymanagerwidget.cpp \
+    vertexformat.cpp \
+    submesh.cpp \
+    mesh.cpp
 
 HEADERS += \
         mainwindow.h \
     rendersettings.h \
     transformwidget.h \
     openglwidget.h \
-    entitymanagerwidget.h
+    entitymanagerwidget.h \
+    vertexformat.h \
+    submesh.h \
+    mesh.h
 
 FORMS += \
         mainwindow.ui \
