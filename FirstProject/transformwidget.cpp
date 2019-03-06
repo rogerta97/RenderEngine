@@ -6,6 +6,7 @@ TransformWidget::TransformWidget(QWidget *parent) :
     ui(new Ui::TransformWidget)
 {
     ui->setupUi(this);
+
 }
 
 TransformWidget::~TransformWidget()
