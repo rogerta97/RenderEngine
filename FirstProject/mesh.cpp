@@ -12,32 +12,31 @@ Mesh::Mesh()
 
 void Mesh::loadModel(const char *filename)
 {
-    Assimp::Importer import;
 
-    QFile file(filename);
-    if(!file.open(QIODevice::ReadOnly)) {
-        printf("Could not open file for read: %s", filename);
-    }
+        Assimp::Importer a;
 
-    QByteArray data = file.readAll();
+//      QFile file(filename);
+//      if(!file.open(QIODevice::ReadOnly)) {
+//         printf("Could not open file for read: %s", filename);
+//      }
 
-    const aiScene* scene = import.ReadFileFromMemory(
-                data.data(), data.size(),
-                aiProcess_Triangulate |
-                aiProcess_FlipUVs |
-                aiProcess_GenSmoothNormals |
-                aiProcess_OptimizeMeshes |
-                aiProcess_PreTransformVertices |
-                aiProcess_ImproveCacheLocality,
-                ".obj");
+//      QByteArray data = file.readAll();
 
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+//      const aiScene* scene = import.ReadFileFromMemory(
+//                data.data(), data.size(),
+//                aiProcess_Triangulate |
+//                aiProcess_FlipUVs |
+//                aiProcess_GenSmoothNormals |
+//                aiProcess_OptimizeMeshes |
+//                aiProcess_PreTransformVertices |
+//                aiProcess_ImproveCacheLocality,
+//                ".obj");
 
-        printf("ERROR:ASSIMP::%s", import.GetErrorString());
-        return;
-    }
+//      if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 
-
+//          printf("ERROR:ASSIMP::%s", import.GetErrorString());
+//          return;
+//      }
 
 }
 
