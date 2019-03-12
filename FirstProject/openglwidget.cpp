@@ -10,17 +10,21 @@ openglwidget::openglwidget(QWidget* parent) : QOpenGLWidget(parent)
 
 void openglwidget::initializeGL()
 {
-    initializeOpenGLFunctions();
+      initializeOpenGLFunctions();
 
-    QOpenGLDebugLogger* logger = new QOpenGLDebugLogger(this);
-    logger->initialize();
+      QOpenGLDebugLogger* logger = new QOpenGLDebugLogger(this);
+      logger->initialize();
 
-    connect(logger, SIGNAL(messageLogged(const QOpenGLDebugMessage& message)), this,
-            SLOT(handleLoggedMessage(const QOpenGLDebugMessage& message)));
+      connect(logger, SIGNAL(messageLogged(const QOpenGLDebugMessage& message)), this,
+              SLOT(handleLoggedMessage(const QOpenGLDebugMessage& message)));
 
-    logger->startLogging();
+      logger->startLogging();
 
-    createTriangle();
+      createShader();
+      Shape2D* new_shape = new Shape2D(Square);
+      enableVAO(new_shape->vert_num, new_shape->strideBytes, new_shape->offsetBytes0, new_shape->offsetBytes1);
+      new_shape->ReleaseVAOVBO();
+      shapes.push_back(new_shape);
 }
 
 void openglwidget::handleLoggedMessage(const QOpenGLDebugMessage& message)
@@ -36,7 +40,7 @@ void openglwidget::resizeGL(int w, int h)
 void openglwidget::paintGL()
 {
     glClearDepth(1.0f);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(backface_cull)
@@ -57,60 +61,26 @@ void openglwidget::paintGL()
     else
         glDisable(GL_DEPTH_TEST);
 
-
-    drawTriangle();
+    program.bind();
+    for(auto it = shapes.begin(); it != shapes.end(); it++)
+        (*it)->Draw();
+    program.release();
 }
 
-void openglwidget::drawTriangle()
+void openglwidget::createShader()
 {
-
-    if(program.bind())
-    {
-        qDebug() << "Valid Program";
-        vao.bind();
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-        vao.release();
-        program.release();
-    }
-}
-
-void openglwidget::createTriangle()
-{
-    //PROGRAM
     program.create();
     program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/resources/shaders/shader1_vert.vsh");
     program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/resources/shaders/shader1_frag.fsh");
     program.link();
-    program.bind();
+}
 
-    //VBO
-    QVector3D vertices[] = {
-        QVector3D(-0.5f, -0.5f, 1.0f), QVector3D(1.0f, 0.0f, 0.0f),
-        QVector3D(0.0f, 0.5f, 1.0f),   QVector3D(0.0f, 1.0f, 0.0f),
-        QVector3D(0.5f, -0.5f, 1.0f),   QVector3D(0.0f, 0.0f, 1.0f)
-    };
-    vbo.create();
-    vbo.bind();
-    vbo.setUsagePattern(QOpenGLBuffer::UsagePattern::StaticDraw);
-    vbo.allocate(vertices, 6 * sizeof(QVector3D));
+void openglwidget::enableVAO(int vert_num, int strideBytes, int offsetBytes0, int offsetBytes1)
+{
+     glEnableVertexAttribArray(last_vao);
+     glEnableVertexAttribArray(last_vao + 1);
+     glVertexAttribPointer(0, vert_num, GL_FLOAT, GL_FALSE, strideBytes, (void*)offsetBytes0);
+     glVertexAttribPointer(1, vert_num, GL_FLOAT, GL_FALSE, strideBytes, (void*)offsetBytes1);
 
-    //VAO
-    vao.create();
-    vao.bind();
-    const GLint compCount = 3;
-    const int strideBytes = 2 * sizeof(QVector3D);
-    const int offsetBytes0 = 0;
-    const int offsetBytes1 = sizeof(QVector3D);
-
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(0, compCount, GL_FLOAT, GL_FALSE, strideBytes, (void*)offsetBytes0);
-    glVertexAttribPointer(1, compCount, GL_FLOAT, GL_FALSE, strideBytes, (void*)offsetBytes1);
-
-    vao.release();
-    vbo.release();
-    program.release();
-
-
-    qDebug() << "Triangle created";
+     last_vao += 2;
 }
