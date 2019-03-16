@@ -1,12 +1,10 @@
 #ifndef OPENGLWIDGET_H
 #define OPENGLWIDGET_H
 
-#include "Shape2D.h"
-
-#include <list>
-
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLDebugLogger>
 
@@ -20,18 +18,16 @@ public:
     void initializeGL() override;
     void resizeGL(int width, int height) override;
     void paintGL() override;
-    void createShader();
+    void createTriangle();
+    void drawTriangle();
 
+    QOpenGLBuffer vbo;
+    QOpenGLVertexArrayObject vao;
     QOpenGLShaderProgram program;
-
-    void enableVAO(int vert_num, int strideBytes, int offsetBytes0, int offsetBytes1);
 
     bool backface_cull = false;
     bool depth_test = false;
     bool write_depth = false;
-
-    std::list<Shape2D*> shapes;
-    int last_vao = 0;
 
 public slots:
 
@@ -40,4 +36,3 @@ public slots:
 };
 
 #endif // OPENGLWIDGET_H
-

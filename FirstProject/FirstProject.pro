@@ -33,8 +33,7 @@ SOURCES += \
     entitymanagerwidget.cpp \
     vertexformat.cpp \
     submesh.cpp \
-    mesh.cpp \
-    Shape2D.cpp
+    mesh.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,8 +43,7 @@ HEADERS += \
     entitymanagerwidget.h \
     vertexformat.h \
     submesh.h \
-    mesh.h \
-    Shape2D.h
+    mesh.h
 
 FORMS += \
         mainwindow.ui \

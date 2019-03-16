@@ -3,8 +3,8 @@
 #include <QFile>
 #include <QIODevice>
 
-//#include <assimp/postprocess.h>
-//#include <assimp/Importer.hpp>
+#include <assimp/postprocess.h>
+#include <assimp/Importer.hpp>
 
 Mesh::Mesh()
 {
@@ -13,7 +13,7 @@ Mesh::Mesh()
 void Mesh::loadModel(const char *filename)
 {
 
-        //Assimp::Importer a;
+        Assimp::Importer a;
 
 //      QFile file(filename);
 //      if(!file.open(QIODevice::ReadOnly)) {
@@ -45,5 +45,5 @@ void Mesh::processNode(aiNode *node, aiScene *scene){
 }
 
 SubMesh* Mesh::processMesh(aiNode *node, aiScene *scene) {
-    return nullptr;
+
 }
