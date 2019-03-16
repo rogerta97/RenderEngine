@@ -33,7 +33,9 @@ SOURCES += \
     entitymanagerwidget.cpp \
     vertexformat.cpp \
     submesh.cpp \
-    mesh.cpp
+    mesh.cpp \
+    scene.cpp \
+    entity.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +45,9 @@ HEADERS += \
     entitymanagerwidget.h \
     vertexformat.h \
     submesh.h \
-    mesh.h
+    mesh.h \
+    scene.h \
+    entity.h
 
 FORMS += \
         mainwindow.ui \

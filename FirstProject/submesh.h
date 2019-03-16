@@ -13,6 +13,7 @@ public:
     SubMesh(VertexFormat vertexFormat, void *data, int size, unsigned int* indices, int indices_count);
 
     void update();
+    void create();
     void draw();
     void destroy();
 

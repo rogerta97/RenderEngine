@@ -8,6 +8,8 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLDebugLogger>
 
+class entity;
+class scene;
 class openglwidget :
         public QOpenGLWidget,
         protected QOpenGLFunctions_3_3_Core
@@ -28,6 +30,8 @@ public:
     bool backface_cull = false;
     bool depth_test = false;
     bool write_depth = false;
+
+    scene* currentScene = nullptr;
 
 public slots:
 

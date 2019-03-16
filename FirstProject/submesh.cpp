@@ -2,12 +2,18 @@
 
 SubMesh::SubMesh(VertexFormat vertexFormat, void *data, int size)
 {
-
+    this->vertexFormat = vertexFormat;
+    memcpy(this->data, data, size);
+    this->data_size = size;
 }
 
 SubMesh::SubMesh(VertexFormat vertexFormat, void *data, int size, unsigned int* indices, int indices_count)
 {
-
+    this->vertexFormat = vertexFormat;
+    this->indices_count = indices_count;
+    this->data_size = size;
+    memcpy(this->data, data, size);
+    memcpy(this->indices, indices, indices_count);
 }
 
 void SubMesh::update() {
@@ -20,7 +26,7 @@ void SubMesh::update() {
     vbo.create();
     vbo.bind();
     vbo.setUsagePattern(QOpenGLBuffer::UsagePattern::StaticDraw);
-    vbo.allocate((data, int(data_size)));
+    vbo.allocate(data, int(data_size));
     delete[] data;
     data = nullptr;
 
@@ -51,10 +57,23 @@ void SubMesh::update() {
     if(ibo.isCreated()) {
         ibo.release();
     }
+}
+
+void SubMesh::create() {
+
 
 }
 
+//void SubMesh::update() {
+
+
+
+//}
+
 void SubMesh::draw() {
+
+
+    qDebug() << "DrawMesh";
 
     int num_vertices = data_size / vertexFormat.size;
     vao.bind();

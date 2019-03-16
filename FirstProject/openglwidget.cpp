@@ -1,4 +1,7 @@
 #include "openglwidget.h"
+#include <mesh.h>
+#include <scene.h>
+#include <entity.h>
 #include <iostream>
 
 #pragma comment (lib, "OpenGL32.lib")
@@ -21,6 +24,11 @@ void openglwidget::initializeGL()
     logger->startLogging();
 
     createTriangle();
+
+    // Create the scene
+    currentScene = new scene();
+    currentScene->create();
+
 }
 
 void openglwidget::handleLoggedMessage(const QOpenGLDebugMessage& message)
@@ -35,6 +43,8 @@ void openglwidget::resizeGL(int w, int h)
 
 void openglwidget::paintGL()
 {
+    currentScene->update();
+
     glClearDepth(1.0f);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -58,7 +68,9 @@ void openglwidget::paintGL()
         glDisable(GL_DEPTH_TEST);
 
 
-    drawTriangle();
+   // drawTriangle();
+    qDebug() << "Calling Draw";
+    // currentScene->draw();
 }
 
 void openglwidget::drawTriangle()
@@ -66,7 +78,6 @@ void openglwidget::drawTriangle()
 
     if(program.bind())
     {
-        qDebug() << "Valid Program";
         vao.bind();
         glDrawArrays(GL_TRIANGLES, 0, 3);
         vao.release();
