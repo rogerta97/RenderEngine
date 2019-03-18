@@ -3,8 +3,9 @@
 SubMesh::SubMesh(VertexFormat vertexFormat, void *data, int size)
 {
     this->vertexFormat = vertexFormat;
-    memcpy(this->data, data, size);
+    this->data = (unsigned char*)data;
     this->data_size = size;
+    create();
 }
 
 SubMesh::SubMesh(VertexFormat vertexFormat, void *data, int size, unsigned int* indices, int indices_count)
@@ -12,12 +13,15 @@ SubMesh::SubMesh(VertexFormat vertexFormat, void *data, int size, unsigned int* 
     this->vertexFormat = vertexFormat;
     this->indices_count = indices_count;
     this->data_size = size;
-    memcpy(this->data, data, size);
-    memcpy(this->indices, indices, indices_count);
+    this->data = (unsigned char*)data;
+    this->indices = (unsigned char*)indices;
+    qDebug() << "hello";
+
+    create();
 }
 
-void SubMesh::update() {
-
+void SubMesh::create()
+{
     // VAO: Vertex format description and state of VBO's
     vao.create();
     vao.bind();
@@ -27,7 +31,6 @@ void SubMesh::update() {
     vbo.bind();
     vbo.setUsagePattern(QOpenGLBuffer::UsagePattern::StaticDraw);
     vbo.allocate(data, int(data_size));
-    delete[] data;
     data = nullptr;
 
     //IBO: Buffer with indices
@@ -37,7 +40,6 @@ void SubMesh::update() {
         ibo.bind();
         ibo.setUsagePattern(QOpenGLBuffer::UsagePattern::StaticDraw);
         ibo.allocate(indices, int(indices_count * sizeof(unsigned int)));
-        delete[] indices;
         indices = nullptr;
     }
 
@@ -45,11 +47,13 @@ void SubMesh::update() {
 
         VertexAttribute &attr = vertexFormat.attribute[location];
 
-        if(attr.enabled) {
-            glEnableVertexAttribArray(GLuint(location));
-            glVertexAttribPointer(GLuint(location), attr.ncomp, GL_FLOAT, GL_FALSE, vertexFormat.size, (void*) (attr.offset));
-        }
+//        if(attr.enabled) {
+//            glfuncs->glEnableVertexAttribArray(GLuint(location));
+//            glfuncs->glVertexAttribPointer(GLuint(location), attr.ncomp, GL_FLOAT, GL_FALSE, vertexFormat.size, (void*) (attr.offset));
+//        }
     }
+
+    qDebug() << "Here3";
 
     // Release
     vao.release();
@@ -58,8 +62,7 @@ void SubMesh::update() {
         ibo.release();
     }
 }
-
-void SubMesh::create() {
+void SubMesh::update() {
 
 
 }

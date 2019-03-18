@@ -13,11 +13,11 @@ void scene::create()
     entity* sphereEntity = new entity();
 
     Mesh* sphereMesh = new Mesh();
-    sphereMesh->createSphereShape();
+    sphereMesh->createCubeShape();
 
-    sphereEntity->addMesh(sphereMesh);
+    // sphereEntity->addMesh(sphereMesh);
 
-    addEntity(sphereEntity);
+    // addEntity(sphereEntity);
 }
 
 void scene::update(){

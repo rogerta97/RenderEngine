@@ -23,6 +23,7 @@ public:
 
     // Primitives
     void createSphereShape();
+    void createCubeShape();
 
     QVector<SubMesh*> submeshes_list;
 

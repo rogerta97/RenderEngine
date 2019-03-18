@@ -14,6 +14,7 @@ openglwidget::openglwidget(QWidget* parent) : QOpenGLWidget(parent)
 void openglwidget::initializeGL()
 {
     initializeOpenGLFunctions();
+    glfuncs = this;
 
     QOpenGLDebugLogger* logger = new QOpenGLDebugLogger(this);
     logger->initialize();
@@ -43,7 +44,7 @@ void openglwidget::resizeGL(int w, int h)
 
 void openglwidget::paintGL()
 {
-    currentScene->update();
+
 
     glClearDepth(1.0f);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -70,7 +71,7 @@ void openglwidget::paintGL()
 
    // drawTriangle();
     qDebug() << "Calling Draw";
-    // currentScene->draw();
+    currentScene->draw();
 }
 
 void openglwidget::drawTriangle()

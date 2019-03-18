@@ -64,6 +64,8 @@ void Mesh::destroy() {
     for(int i = 0; i < submeshes_list.length(); i++) {
         submeshes_list[i]->destroy();
     }
+
+
 }
 
 void Mesh::createSphereShape() {
@@ -100,11 +102,36 @@ void Mesh::createSphereShape() {
     }
 
       VertexFormat vertexFormat;
-//    vertexFormat.setVertexAttribute(0, 0, 3);
-//    vertexFormat.setVertexAttribute(1, sizeof(QVector3D), 3);
+      vertexFormat.setVertexAttribute(0, 0, 3);
+      vertexFormat.setVertexAttribute(1, sizeof(QVector3D), 3);
 
       name = "Sphere";
       addSubMesh(vertexFormat, sphere, sizeof(sphere), &sphereIndices[0][0][0], H*V*6);
+}
+
+void Mesh::createCubeShape() {
+
+
+     QVector3D cube[4];
+
+     cube[0] = {-1, -1, 0};
+     cube[1] = {-1, 1, 0};
+     cube[2] = {1, 1, 0};
+     cube[3] = {1, -1, 0};
+
+     unsigned int cubeIndices[] = {
+
+        0, 2, 1,
+        0, 3, 2,
+     };
+
+     VertexFormat vertexFormat;
+     vertexFormat.setVertexAttribute(0, 0, 3);
+
+     addSubMesh(vertexFormat, cube, sizeof(cube), &cubeIndices[0], 6);
+
+     qDebug() << "Mesh Created";
+
 }
 
 void Mesh::addSubMesh(VertexFormat vertexFormat, void *data, int bytes, unsigned int *indices, int bytes_indices) {
