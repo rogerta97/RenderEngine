@@ -6,7 +6,7 @@
 #include "openglwidget.h"
 #include "vertexformat.h"
 
-class SubMesh: protected QOpenGLFunctions_3_3_Core
+class SubMesh
 {
 public:
     SubMesh(VertexFormat vertexFormat, void *data, int size);

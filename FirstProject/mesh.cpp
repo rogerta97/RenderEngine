@@ -64,8 +64,6 @@ void Mesh::destroy() {
     for(int i = 0; i < submeshes_list.length(); i++) {
         submeshes_list[i]->destroy();
     }
-
-
 }
 
 void Mesh::createSphereShape() {
@@ -112,12 +110,13 @@ void Mesh::createSphereShape() {
 void Mesh::createCubeShape() {
 
 
-     QVector3D cube[4];
-
-     cube[0] = {-1, -1, 0};
-     cube[1] = {-1, 1, 0};
-     cube[2] = {1, 1, 0};
-     cube[3] = {1, -1, 0};
+     float cube[12] =
+     {
+         -1, -1, 0,
+         -1, 1, 0,
+         1, 1, 0,
+         1, -1, 0
+     };
 
      unsigned int cubeIndices[] = {
 

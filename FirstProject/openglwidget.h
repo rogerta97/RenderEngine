@@ -12,7 +12,7 @@ class entity;
 class scene;
 class openglwidget :
         public QOpenGLWidget,
-        protected QOpenGLFunctions_3_3_Core
+        public QOpenGLFunctions_3_3_Core
 {
 public:
     openglwidget(QWidget* parent = nullptr);

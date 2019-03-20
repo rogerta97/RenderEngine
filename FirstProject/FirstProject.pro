@@ -35,7 +35,8 @@ SOURCES += \
     submesh.cpp \
     mesh.cpp \
     scene.cpp \
-    entity.cpp
+    entity.cpp \
+    globals.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     submesh.h \
     mesh.h \
     scene.h \
-    entity.h
+    entity.h \
+    globals.h
 
 FORMS += \
         mainwindow.ui \

@@ -15,9 +15,8 @@ void scene::create()
     Mesh* sphereMesh = new Mesh();
     sphereMesh->createCubeShape();
 
-    // sphereEntity->addMesh(sphereMesh);
-
-    // addEntity(sphereEntity);
+    sphereEntity->addMesh(sphereMesh);
+    addEntity(sphereEntity);
 }
 
 void scene::update(){

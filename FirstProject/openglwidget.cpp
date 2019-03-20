@@ -1,4 +1,6 @@
 #include "openglwidget.h"
+#include "mainwindow.h"
+#include "globals.h"
 #include <mesh.h>
 #include <scene.h>
 #include <entity.h>
@@ -44,8 +46,6 @@ void openglwidget::resizeGL(int w, int h)
 
 void openglwidget::paintGL()
 {
-
-
     glClearDepth(1.0f);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -70,7 +70,6 @@ void openglwidget::paintGL()
 
 
    // drawTriangle();
-    qDebug() << "Calling Draw";
     currentScene->draw();
 }
 
