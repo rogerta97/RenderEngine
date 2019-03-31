@@ -2,6 +2,10 @@
 #define TRANSFORMWIDGET_H
 
 #include <QWidget>
+#include <QDoubleSpinBox>
+#include <QSpinBox>
+
+class RenderWindow;
 
 namespace Ui {
 class TransformWidget;
@@ -15,8 +19,21 @@ public:
     explicit TransformWidget(QWidget *parent = nullptr);
     ~TransformWidget();
 
-private:
     Ui::TransformWidget *ui;
+    QDoubleSpinBox* pos_x;
+    QDoubleSpinBox* pos_y;
+    QDoubleSpinBox* scl_x;
+    QDoubleSpinBox* scl_y;
+    QDoubleSpinBox* rot;
+    QSpinBox* red;
+    QSpinBox* green;
+    QSpinBox* blue;
+    RenderWindow* render_window;
+
+
+private slots:
+    void transformChanged();
+    void colorChanged();
 };
 
 #endif // TRANSFORMWIDGET_H

@@ -10,6 +10,7 @@ namespace Ui {
 class RenderSettings;
 class TransformWidget;
 class EntityManagerWidget;
+class RenderWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -27,9 +28,10 @@ public:
 private:
     Ui::MainWindow *uiMainWindow;
 
-    RenderSettings* renderSettings;
-    TransformWidget* transformWidget;
-    EntityManagerWidget* entityManagerWidget;
+    RenderSettings* renderSettings = nullptr;
+    TransformWidget* transformWidget = nullptr;
+    EntityManagerWidget* entityManagerWidget = nullptr;
+    RenderWindow* render_window = nullptr;
 
 };
 

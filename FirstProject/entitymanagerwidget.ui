@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>244</width>
-    <height>219</height>
+    <height>236</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,33 +15,58 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>224</width>
-        <height>141</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
+    <widget class="QListWidget" name="entity_list"/>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Shape:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="shape_combo"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="add_button">
      <property name="text">
       <string>Add Entity</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="delete_button">
      <property name="text">
       <string>Delete Entity</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="up_button">
+       <property name="text">
+        <string>Move Up</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="down_button">
+       <property name="text">
+        <string>Move Down</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="newButton">
+     <property name="text">
+      <string>New</string>
      </property>
     </widget>
    </item>

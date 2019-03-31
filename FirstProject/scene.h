@@ -1,26 +1,27 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-// Will track all meshes
+#include <QWidget>
+#include <list>
 
-#include <entity.h>
-#include <QVector>
+class Shape2d;
+#include <QPainter>
 
-class scene
+class Scene : public QWidget
 {
+    Q_OBJECT
 public:
-    scene();
+    explicit Scene(QWidget *parent = nullptr) : QWidget(parent) {};
 
-    void create();
-    void update();
-    void draw();
-    void destroy();
+    void paintEvent(QPaintEvent *event) override;
 
-    void addEntity(entity* newEntity);
 
-private:
+    QSize minimumSizeHint() const override;
+    QSize sizeHint() const override;
 
-    QVector<entity*> entity_list;
+public:
+    std::list<Shape2d*> shapes;
+    Shape2d* selected_shape = nullptr;
 };
 
 #endif // SCENE_H

@@ -29,25 +29,25 @@ SOURCES += \
         mainwindow.cpp \
     rendersettings.cpp \
     transformwidget.cpp \
-    openglwidget.cpp \
     entitymanagerwidget.cpp \
-    vertexformat.cpp \
-    submesh.cpp \
-    mesh.cpp \
+    renderwindow.cpp \
+    shape2d.cpp \
+    shapecircle.cpp \
+    shaperect.cpp \
     scene.cpp \
-    entity.cpp
+    shapeline.cpp
 
 HEADERS += \
         mainwindow.h \
     rendersettings.h \
     transformwidget.h \
-    openglwidget.h \
     entitymanagerwidget.h \
-    vertexformat.h \
-    submesh.h \
-    mesh.h \
+    renderwindow.h \
+    shape2d.h \
+    shaperect.h \
+    shapecircle.h \
     scene.h \
-    entity.h
+    shapeline.h
 
 FORMS += \
         mainwindow.ui \

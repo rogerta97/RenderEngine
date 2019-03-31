@@ -19,7 +19,61 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="openglwidget" name="openGLWidget"/>
+     <widget class="QDockWidget" name="RenderingDock">
+      <property name="floating">
+       <bool>false</bool>
+      </property>
+      <property name="windowTitle">
+       <string>Scene</string>
+      </property>
+      <widget class="QWidget" name="dockWidgetContents_11">
+       <widget class="QDockWidget" name="InspectorD">
+        <property name="geometry">
+         <rect>
+          <x>720</x>
+          <y>0</y>
+          <width>131</width>
+          <height>241</height>
+         </rect>
+        </property>
+        <property name="windowTitle">
+         <string>Inspector</string>
+        </property>
+        <widget class="QWidget" name="dockWidgetContents_12"/>
+       </widget>
+       <widget class="QDockWidget" name="HierarchyD">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>181</width>
+          <height>421</height>
+         </rect>
+        </property>
+        <property name="floating">
+         <bool>false</bool>
+        </property>
+        <property name="windowTitle">
+         <string>Hierarchy</string>
+        </property>
+        <widget class="QWidget" name="dockWidgetContents_13"/>
+       </widget>
+       <widget class="QDockWidget" name="RenderingOutput">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>0</y>
+          <width>541</width>
+          <height>421</height>
+         </rect>
+        </property>
+        <property name="windowTitle">
+         <string>Rendering output</string>
+        </property>
+        <widget class="QWidget" name="dockWidgetContents_3"/>
+       </widget>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -51,16 +105,7 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QDockWidget" name="HierarchyDock">
-   <property name="windowTitle">
-    <string>Hierarchy</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>1</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_7"/>
-  </widget>
-  <widget class="QDockWidget" name="ProjectDock">
+  <widget class="QDockWidget" name="ProjectD">
    <property name="windowTitle">
     <string>Project</string>
    </property>
@@ -68,24 +113,6 @@
     <number>8</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_8"/>
-  </widget>
-  <widget class="QDockWidget" name="InspectorDock">
-   <property name="windowTitle">
-    <string>Inspector</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_9"/>
-  </widget>
-  <widget class="QDockWidget" name="RenderDock">
-   <property name="windowTitle">
-    <string>Render</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_10"/>
   </widget>
   <action name="actionSave_Scene">
    <property name="text">
@@ -104,13 +131,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>openglwidget</class>
-   <extends>QOpenGLWidget</extends>
-   <header>openglwidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

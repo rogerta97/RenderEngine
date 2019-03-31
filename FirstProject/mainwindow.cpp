@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 #include "rendersettings.h"
 #include "transformwidget.h"
-#include "openglwidget.h"
 #include "entitymanagerwidget.h"
+#include "renderwindow.h"
 
 using namespace std;
 
@@ -16,17 +16,21 @@ MainWindow::MainWindow(QWidget *parent) :
     // All tab positions on top of the docking area
     setTabPosition(Qt::AllDockWidgetAreas, QTabWidget::TabPosition::North);
 
-    // Add render widget
-    renderSettings = new RenderSettings();
-    uiMainWindow->RenderDock->setWidget(renderSettings);
-
     // Add transform widget
     transformWidget = new TransformWidget();
-    uiMainWindow->InspectorDock->setWidget(transformWidget);
+    uiMainWindow->InspectorD->setWidget(transformWidget);
 
     // Add entity widget
     entityManagerWidget = new EntityManagerWidget();
-    uiMainWindow->HierarchyDock->setWidget(entityManagerWidget);
+    uiMainWindow->HierarchyD->setWidget(entityManagerWidget);
+
+    // Add render window
+    render_window = new RenderWindow();
+    uiMainWindow->RenderingOutput->setWidget(render_window);
+
+    entityManagerWidget->render_window = render_window;
+    transformWidget->render_window = render_window;
+    render_window->transformWidget = transformWidget;
 
 }
 

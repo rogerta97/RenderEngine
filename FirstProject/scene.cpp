@@ -1,50 +1,35 @@
 #include "scene.h"
+#include "shape2d.h"
 
-scene::scene()
+void Scene::paintEvent(QPaintEvent *)
 {
 
+    QPainter painter(this);
+
+    QColor white;
+    QBrush background_brush;
+
+    white.setRgb(255, 255, 255);
+    background_brush.setColor(white);
+    background_brush.setStyle(Qt::SolidPattern);
+
+    painter.setBrush(background_brush);
+    QRect draw_rect = rect();
+    draw_rect.setSize(QSize(draw_rect.size().width() - 5, draw_rect.size().height() - 5));
+    painter.drawRect(draw_rect);
+
+    painter.setBrush(Qt::NoBrush);
+
+    for(auto it = shapes.rbegin(); it != shapes.rend(); it++)
+        (*it)->Draw(painter);
 }
 
-void scene::create()
+QSize Scene::sizeHint() const
 {
-
-    // Create Sphere
-
-    entity* sphereEntity = new entity();
-
-    Mesh* sphereMesh = new Mesh();
-    sphereMesh->createCubeShape();
-
-    // sphereEntity->addMesh(sphereMesh);
-
-    // addEntity(sphereEntity);
+    return QSize(400, 300);
 }
 
-void scene::update(){
-
-    for(int i = 0; i < entity_list.length(); i++)
-    {
-        entity_list[i]->update();
-    }
-}
-
-void scene::draw()
+QSize Scene::minimumSizeHint() const
 {
-    for(int i = 0; i < entity_list.length(); i++)
-    {
-        entity_list[i]->draw();
-    }
-}
-
-void scene::destroy()
-{
-    for(int i = 0; i < entity_list.length(); i++)
-    {
-        entity_list[i]->destroy();
-    }
-}
-
-
-void scene::addEntity(entity *newEntity){
-    entity_list.push_back(newEntity);
+    return QSize(100, 100);
 }
