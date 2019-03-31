@@ -11,6 +11,8 @@ The authors of this code are: **Roger Tello** and **Rodrigo de Pedro**
 ### Hierarchy     
 The hierarchy tab lets you to modify the current set of entities displayed on the render window.
 
+![Hierarchy](https://i.imgur.com/UoiNIDN.png)
+
  - Shape: sets the shape of the next created entity.
  - Add entity: adds an entity to the scene.
  - Delete entity: deletes currently selected entity.
@@ -20,11 +22,14 @@ The hierarchy tab lets you to modify the current set of entities displayed on th
  To select an entity, click on it's name in the hierarchy list.
  
  ### Transform / Color
- 
 The transform and color tab, as it's name suggests, lets you modify the position, size, rotation and color of the currently selected entity.
+
+![Inspector](https://i.imgur.com/wAMBhli.png)
 
 ### Render options
 The render options lets you modify of entities are drawn. Be aware that render options are applied to all entities in the scene!
+
+![Inspector](https://i.imgur.com/PHDqcVB.png)
 
 - Pen options: lets you modify how the outline of the entities is executed.
 - Brush options: lets you modify how the filling of the entities is executed.
